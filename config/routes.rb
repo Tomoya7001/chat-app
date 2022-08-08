@@ -9,10 +9,17 @@ Rails.application.routes.draw do
   }
 
   root to: 'homes#top'
+  get '/about' => 'homes#about', as: 'about'
+
+  namespace :public do
+    resources :post_images, only: [:new, :index, :show]
+  end
+
+
   devise_for :users
 
-  resources :post_images, only: [:new, :index, :show]
 
-  get "/homes/about" => "homes#about", as: "about"
+
+
 
 end
